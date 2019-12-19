@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-once>
+            {{ titulo }}
+        </p>
+        <p>
+            {{ saudacao() }}
+        </p>
+        <!-- v-bind => Incorpora o elemento Vue a propriedade Html como sufixo-->
+        <a v-bind:href="link">Google</a>
+        <hr>
+        <!-- v-html => Interpreta elementos html-->
+        <p v-html='link_html'></p>
+
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!',
+            link: 'http://google.com.br',
+            link_html: '<a href="http://google.com.br">Google</a>'
+        },
+        methods: {
+
+            saudacao: function() {
+                this.titulo = 'Bom dia'
+                return this.titulo
+            }
+        }
+    })
+</script>
