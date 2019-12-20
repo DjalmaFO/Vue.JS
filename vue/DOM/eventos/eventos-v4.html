@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--Nao se incrementa devido ao "v-once"-->
+        <p v-once>
+            {{ contador }}
+        </p>
+        <p>
+            {{ contador }}
+        </p>
+        <button v-on:click="somar(5, $event)">Somar 1</button>
+        <p v-on:mousemove="atualizarXY">
+            {{x}} e {{y}}
+            <!--modificador de eventos stop-->
+            <span v-on:mousemove.stop.prevent>Parar Aqui</span>
+        </p>
+        <!--modificador de eventos prevent (assim como no JS preventDefault())-->
+        <a v-on:click.prevent href="http:google.com.br">Google</a>
+    </div>
+
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            somar(passo, event) {
+                console.log(passo, event)
+                this.contador += passo
+            },
+            atualizarXY(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            }
+        }
+    })
+</script>
