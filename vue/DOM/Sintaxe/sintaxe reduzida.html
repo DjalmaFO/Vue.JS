@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--Nao se incrementa devido ao "v-once"-->
+        <p v-once>
+            {{ contador }}
+        </p>
+        <p>
+            {{ contador }}
+        </p>
+        <input type="text" :value="contador">
+        <button @click="somar">Somar 1</button>
+    </div>
+
+</body>
+
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0
+        },
+        methods: {
+            somar() {
+                this.contador += 1
+            }
+        }
+    })
+</script>
