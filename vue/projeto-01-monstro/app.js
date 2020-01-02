@@ -18,6 +18,7 @@ new Vue({
             this.running = true
             this.playerLife = 100
             this.monsterLife = 100
+            this.logs = []
         },
 
         ataque(especial) {
@@ -31,7 +32,7 @@ new Vue({
             const ferimento = this.getRandom(min + plus, max + plus)
                 //pega o valor maior da expressao
             this[atributo] = Math.max(this[atributo] - ferimento, 0)
-            this.registerLog(`${source} atingiu ${target} com um hit de ${ferimento}!`, cls)
+            this.registerLog(`O ${source} atingiu ${target} com um hit de ${ferimento}!`, cls)
         },
 
         getRandom(min, max) {
@@ -41,10 +42,11 @@ new Vue({
         curar(min, max) {
             const curar = this.getRandom(min, max)
             this.playerLife = Math.min(this.playerLife + curar, 100)
+            this.registerLog(`O jogador foi curado em ${curar} HP!`, 'player')
         },
         curaEferimento() {
             this.curar(10, 15)
-            this.ferimento('playerLife', 7, 12, false)
+            this.ferimento('playerLife', 7, 12, false, 'Monstro', 'Jogador', 'monster')
         },
         registerLog(text, cls) {
             // dados novos ficam a cima, ao contrario seria "Push"

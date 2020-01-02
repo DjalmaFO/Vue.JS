@@ -62,8 +62,12 @@
                     Iniciar Jogo
             </button>
         </div>
-        <div v-if="logs.length" class="panel log">
-
+        <div v-if="logs.length" class="panel logs">
+            <ul>
+                <li v-for="log in logs" class="logs" :class="logs.cls">
+                    {{log.text}}
+                </li>
+            </ul>
         </div>
 </body>
 
